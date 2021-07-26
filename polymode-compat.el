@@ -439,14 +439,15 @@ For internal use only, so far.")
     ;; due to adoption of polymode or for some other reasons.
     ;;
     ;; Here come less customizeable suspects:
-    (cl-flet ((always (_f &rest _args) t))
-      ;; This is merely a guess, for example's sake.
-      ;; Also, smartparens does sp--update-local-pairs
-      ;; which might bring smartparens into broken state
-      ;; if brackets are unbalanced.
-      (advice-add 'sp-wrap--can-wrap-p :around #'always)
-      (unwind-protect (funcall mode)
-        (advice-remove 'sp-wrap--can-wrap-p #'always)))))
+    ;; (cl-flet ((always (_f &rest _args) t))
+    ;;   ;; This is merely a guess, for example's sake.
+    ;;   ;; Also, smartparens does sp--update-local-pairs
+    ;;   ;; which might bring smartparens into broken state
+    ;;   ;; if brackets are unbalanced.
+    ;;   (advice-add 'sp-wrap--can-wrap-p :around #'always)
+    ;;   (unwind-protect (funcall mode)
+    ;;     (advice-remove 'sp-wrap--can-wrap-p #'always)))
+    ))
 
 (pm-add-global-localizing-advices)
 
